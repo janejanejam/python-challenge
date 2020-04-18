@@ -39,6 +39,9 @@ for name in set(candidates):
     percentage = (votes/vote_total)*100
     vote_percentage.append(percentage)
 
+# zip lists and sort to get final analysis
+zipped_list = sorted(zip(vote_count, unique_candidates, vote_percentage), reverse = True)
+
 # find winner
 winning_vote_count = max(vote_count)
 winner = unique_candidates[vote_count.index(winning_vote_count)]
@@ -49,7 +52,7 @@ print("Election Results")
 print("------------------------")
 print(f"Total Votes: {vote_total}")
 print("------------------------")
-for vote1, name1, percentage1 in sorted(zip(vote_count, unique_candidates, vote_percentage), reverse = True):
+for vote1, name1, percentage1 in zipped_list:
     print(f"{name1}: {percentage1:.2f}% ({vote1})")
 print("------------------------")
 print(f"Winner: {winner}")
