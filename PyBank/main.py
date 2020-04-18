@@ -5,14 +5,14 @@ import pathlib
 # set path for file budget_data.csv
 dataset = pathlib.Path("./Resources/budget_data.csv")
 
-#create lists for date and profit/loss
-date = []
+# create variabels and lists for date and profit/loss
 month_count = 0
-# pl_total = 0
 current_pl = 0
-# last_pl = 0
-current_pl = []
-monthly_pl_change = []
+last_pl = 0
+monthly_pl_change = 0
+month = []
+pl_total = []
+monthly_pl_changes = []
 
 # open csv
 with open(dataset, 'r') as csvfile:
@@ -25,45 +25,61 @@ with open(dataset, 'r') as csvfile:
     # loop through rows to gather month to month data
     for row in csvreader:
 
-        # gather date and p&l lists
-        date.append(row[0])
-        current_pl.append(int(row[1]))
-
         # count months    
         month_count = month_count + 1
 
+        # gather date and p&l lists
+        month.append(row[0])
+        pl_total.append(int(row[1]))
+
         # calculate monthly pl change
-        #current_pl = int(row[1])
-        #last_pl = int(row - 1, [1])
-        #monthly_pl_change.append(current_pl - last_pl)
+        current_pl = int(row[1])
 
-        # find month to month greatest increase (p&l, date) 
-        # and greatest decrease (p&l, date)
-        # increase_pl = max(monthly_pl_change)
-        # decrease_pl = min(monthly_pl_change)
-        # increase_index = monthly_pl_change.index(increase_pl)
-        # decrease_index = monthly_pl_change.index(decrease_pl)
-        # increase_month = date(increase_index)
-        # decrease_month = date(decrease_index)
+        if last_pl != int():
+            monthly_pl_change = current_pl - last_pl
+            monthly_pl_changes.append(monthly_pl_change)
 
+        last_pl = current_pl
 
-    print(month_count)
+# make calculations for total revenue and average of changes
+revenue_total = sum(pl_total)
 
-    # make calculations for total revenue and average of changes
-    revenue_total = sum(current_pl)
-    print(revenue_total)
-    # average_change = sum(monthly_pl_change) / (month_count - 1)
+# calculate monthly changes average
+total_monthly_pl_changes = sum(monthly_pl_changes)
+average_change = total_monthly_pl_changes / (month_count - 1)
 
+# calculate monthly change max/date and min/date
+max_pl = max(monthly_pl_changes)
+min_pl = min(monthly_pl_changes)
+max_index = monthly_pl_changes.index(max_pl)
+min_index = monthly_pl_changes.index(min_pl)
+max_month = month[max_index+1] 
+min_month = month[min_index+1]
 
+# print to terminal
+print("Financial Analysis")
+print("-----------------------------")
+print(f"Total Months: {month_count}")
+print(f"Total: ${revenue_total}")
+print(f"Average Change: ${average_change:.2f}")
+print(f"Greatest Increase in Profits: {max_month} (${max_pl})")
+print(f"Greatest Decrease in Profits: {min_month} (${min_pl})")
 
+# write to text file
+output_path = pathlib.Path("./Analysis/PyBank_Analysis.txt")
 
+text_file = open(output_path, "w")
 
-    
+lines_of_text = [
+    "Financial Analysis" + "\n",
+    "-----------------------------" + "\n",
+    f"Total Months: {month_count}" + "\n",
+    f"Total: ${revenue_total}" + "\n",
+    f"Average Change: ${average_change:.2f}" + "\n",
+    f"Greatest Increase in Profits: {max_month} (${max_pl})" + "\n",
+    f"Greatest Decrease in Profits: {min_month} (${min_pl})" + "\n"
+    ]
 
-    # loop through proft & loss list
-    #for i in profit_loss:
-        #pl_total = pl_total + int(i)
+text_file.writelines(lines_of_text)
 
-    #print(pl_total)
-    
-    # print analysis to terminal and text file
+text_file.close()
