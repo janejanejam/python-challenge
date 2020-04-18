@@ -5,7 +5,7 @@ import pathlib
 # set path for file budget_data.csv
 dataset = pathlib.Path("./Resources/budget_data.csv")
 
-# create variabels and lists for date and profit/loss
+# create variables and lists
 month_count = 0
 current_pl = 0
 last_pl = 0

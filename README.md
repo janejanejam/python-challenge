@@ -2,9 +2,9 @@
 
 ## PyBank
 
-* In this challenge, I was tasked with creating a Python script for analyzing the financial records of a company. I was given a set of financial data called [budget_data.csv](PyBank/Resources/budget_data.csv). The dataset is composed of two columns: `Date` and `Profit/Losses`. 
+* Analyze financial records of a company. Financial data called [budget_data.csv](PyBank/Resources/budget_data.csv), composed of two columns: `Date` and `Profit/Losses`. 
 
-* My task was to create a Python script that analyzes the records to calculate each of the following:
+* Create Python script that analyzes the records to calculate each of the following:
 
   * The total number of months included in the dataset
 
@@ -16,13 +16,13 @@
 
   * The greatest decrease in losses (date and amount) over the entire period
 
-* The final script prints the analysis to the terminal and exports a text file with the results.
+* [PyBank_Analysis.txt](PyBank/Analysis/PyBank_Analysis.txt) includes final analysis
 
 ## PyPoll
 
-* In this challenge, I was tasked with helping a small, rural town modernize its vote counting process.
+* Analyze set of poll data called [election_data.csv](PyPoll/Resources/election_data.csv), composed of three columns: `Voter ID`, `County`, and `Candidate`. 
 
-* I was given a set of poll data called [election_data.csv](PyPoll/Resources/election_data.csv). The dataset is composed of three columns: `Voter ID`, `County`, and `Candidate`. My task was to create a Python script that analyzes the votes and calculates each of the following:
+* Create a Python script that analyzes the votes and calculates each of the following:
 
   * The total number of votes cast
 
@@ -34,4 +34,4 @@
 
   * The winner of the election based on popular vote.
 
-* The final script prints the analysis to the terminal and exports a text file with the results.
+* [PyPoll_Analysis.txt](PyPoll/Analysis/PyPoll_Analysis.txt) includes final analysis
